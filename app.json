@@ -1,0 +1,74 @@
+{
+  "expo": {
+    "name": "Deportes La Sport",
+    "slug": "deporteslasport",
+    "scheme": "deporteslasport",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#043494",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dddeportessslasporttt",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.dddeportessslasporttt",
+      "adaptiveIcon": {
+        "backgroundColor": "#043494",
+        "foregroundImage": "./assets/logo.png",
+        "backgroundImage": "./assets/logo.png",
+        "monochromeImage": "./assets/logo.png"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/logo.png"
+    },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/logo.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#043494"
+        }
+      ],
+      "expo-font",
+      "expo-sqlite",
+      "@react-native-community/datetimepicker",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Permitir acesso às fotos para escolher a foto dos jogadores e o emblema da equipa.",
+          "cameraPermission": "Permitir acesso à câmara para fotografar os jogadores e o emblema da equipa."
+        }
+      ],
+      "./plugins/withUnifiedNdkVersion",
+      "./plugins/withQuietDevMenu",
+      "./plugins/withGradleMemory",
+      "expo-web-browser"
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "03f45169-f954-4af7-be52-3324d3c370b3"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/03f45169-f954-4af7-be52-3324d3c370b3"
+    }
+  }
+}
