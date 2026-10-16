@@ -57,7 +57,17 @@
       "./plugins/withUnifiedNdkVersion",
       "./plugins/withQuietDevMenu",
       "./plugins/withGradleMemory",
-      "expo-web-browser"
+      "./plugins/withCodemagicSigning",
+      "expo-web-browser",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          }
+        }
+      ]
     ],
     "runtimeVersion": {
       "policy": "appVersion"
