@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import * as Updates from 'expo-updates';
 import { Colors } from '../constants/colors';
 
 const DURATION_MS = 6000;
 const TICK_MS = 50;
+const UPDATE_TIMEOUT_MS = 10000;
 
 const STEPS = [
   'A preparar o plantel…',
@@ -17,6 +19,8 @@ export default function PreviewScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const [elapsed, setElapsed] = useState(0);
   const [pulse] = useState(() => new Animated.Value(0));
+  const [timeUp, setTimeUp] = useState(false);
+  const [updateChecked, setUpdateChecked] = useState(() => __DEV__ || !Updates.isEnabled);
 
   useEffect(() => {
     const loop = Animated.loop(
@@ -36,11 +40,52 @@ export default function PreviewScreen({ navigation }) {
       setElapsed(Math.min(t, DURATION_MS));
       if (t >= DURATION_MS) {
         clearInterval(timer);
-        navigation.replace('Tabs', { screen: 'Inicio' });
+        setTimeUp(true);
       }
     }, TICK_MS);
     return () => clearInterval(timer);
-  }, [navigation]);
+  }, []);
+
+  useEffect(() => {
+    if (__DEV__ || !Updates.isEnabled) return;
+    let cancelled = false;
+    const timeout = setTimeout(() => {
+      if (!cancelled) setUpdateChecked(true);
+    }, UPDATE_TIMEOUT_MS);
+
+    (async () => {
+      try {
+        const check = await Updates.checkForUpdateAsync();
+        if (cancelled) return;
+        if (check.isAvailable) {
+          clearTimeout(timeout);
+          const result = await Updates.fetchUpdateAsync();
+          if (cancelled) return;
+          if (result.isNew) {
+            await Updates.reloadAsync();
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('Expo update check failed', e);
+      }
+      if (!cancelled) {
+        clearTimeout(timeout);
+        setUpdateChecked(true);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (timeUp && updateChecked) {
+      navigation.replace('Tabs', { screen: 'Inicio' });
+    }
+  }, [timeUp, updateChecked, navigation]);
 
   const progress = elapsed / DURATION_MS;
   const percent = Math.round(progress * 100);

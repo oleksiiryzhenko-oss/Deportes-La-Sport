@@ -12,3 +12,7 @@ android/
 *.mobileprovision
 .env*.local
 .DS_Store
+
+# build outputs
+*.apk
+*.aab

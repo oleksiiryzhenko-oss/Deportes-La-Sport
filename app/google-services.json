@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "618144345034",
+    "project_id": "deportes-la-sport",
+    "storage_bucket": "deportes-la-sport.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618144345034:android:d87c4fe2347a68cc32bd33",
+        "android_client_info": {
+          "package_name": "com.dddeportessslasporttt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqJ3eBx_BspUR-qIAWR9rZdbq86KGZizQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

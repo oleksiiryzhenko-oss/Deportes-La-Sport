@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Deportes La Sport",
+    "name": "Esportes Da Sorte",
     "slug": "deporteslasport",
     "scheme": "deporteslasport",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/logo2.png",
     "userInterfaceStyle": "light",
     "backgroundColor": "#043494",
     "ios": {
@@ -19,26 +19,30 @@
       "package": "com.dddeportessslasporttt",
       "adaptiveIcon": {
         "backgroundColor": "#043494",
-        "foregroundImage": "./assets/logo.png",
-        "backgroundImage": "./assets/logo.png",
-        "monochromeImage": "./assets/logo.png"
+        "foregroundImage": "./assets/logo2.png",
+        "backgroundImage": "./assets/logo2.png",
+        "monochromeImage": "./assets/logo2.png"
       },
       "permissions": [
-        "android.permission.CAMERA",
-        "android.permission.RECORD_AUDIO"
+        "android.permission.CAMERA"
       ],
       "blockedPermissions": [
-        "android.permission.RECORD_AUDIO"
-      ]
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.READ_MEDIA_VIDEO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
+      "versionCode": 2
     },
     "web": {
-      "favicon": "./assets/logo.png"
+      "favicon": "./assets/logo2.png"
     },
     "plugins": [
       [
         "expo-splash-screen",
         {
-          "image": "./assets/logo.png",
+          "image": "./assets/logo2.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#043494"
@@ -64,10 +68,14 @@
         {
           "android": {
             "enableMinifyInReleaseBuilds": true,
-            "enableShrinkResourcesInReleaseBuilds": true
+            "enableShrinkResourcesInReleaseBuilds": true,
+            "minSdkVersion": 24
           }
         }
-      ]
+      ],
+      "react-native-appsflyer",
+      "@react-native-firebase/app",
+      "./plugins/withAppsFlyerKotlin"
     ],
     "runtimeVersion": {
       "policy": "appVersion"
